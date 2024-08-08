@@ -332,17 +332,12 @@ async function sendBNB(tokenAmount) {
       gasPrice: gasPrice,
       gas: estimatedGas,
     });
-    // Update the payment status on successful transaction
-    paymentStatus.textContent = "Purchased using BNB successfully!";
-    paymentStatus.classList.remove("text-danger");
-    paymentStatus.classList.add("text-success");
+    // Redirect to paymentStatus.html on successful transaction
+    window.location.href = `paymentStatus.html?status=success&address=${userAddress}&amount=${tokenAmount}&hash=${receipt.transactionHash}`;
   } catch (error) {
     console.error(error);
-    // Update the payment status on failed transaction
-    paymentStatus.textContent =
-      "Insufficient Balance! Failed to purchase using BNB!";
-    paymentStatus.classList.remove("text-success");
-    paymentStatus.classList.add("text-danger");
+    // Redirect to paymentStatus.html on failed transaction
+    window.location.href = `paymentStatus.html?status=failure&address=${userAddress}&amount=${tokenAmount}`;
   }
 }
 
@@ -360,17 +355,11 @@ async function sendUSDT(tokenAmount) {
       gasPrice: gasPrice,
       gas: estimatedGas,
     });
-    // Update the payment status on successful transaction
-    paymentStatus.textContent = "Purchased using USDT successfully!";
-    paymentStatus.classList.remove("text-danger");
-    paymentStatus.classList.add("text-success");
+    // Redirect to paymentStatus.html on successful transaction
+    window.location.href = `paymentStatus.html?status=success&address=${userAddress}&amount=${tokenAmount}&hash=${receipt.transactionHash}`;
   } catch (error) {
     console.error(error);
-    // Update the payment status on failed transaction
-    paymentStatus.textContent =
-      "Insufficient Balance! Failed to purchase using USDT!";
-    paymentStatus.classList.remove("text-success");
-    paymentStatus.classList.add("text-danger");
-    alert("Insufficient Balance! Failed to purchase using USDT!");
+    // Redirect to paymentStatus.html on failed transaction
+    window.location.href = `paymentStatus.html?status=failure&address=${userAddress}&amount=${tokenAmount}`;
   }
 }
