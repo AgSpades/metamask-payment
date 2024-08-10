@@ -343,7 +343,12 @@ async function sendBNB(tokenAmount) {
     });
 
     // Redirect to paymentStatus.html on successful transaction
-    window.location.href = `paymentStatus.html?status=success&address=${userAddress}&amount=${tokenAmount}&hash=${receipt.transactionHash}`;
+    redirectToPaymentStatus(
+      "success",
+      userAddress,
+      tokenAmount,
+      receipt.transactionHash
+    );
   } catch (error) {
     console.error(error);
 
@@ -369,7 +374,12 @@ async function sendUSDT(tokenAmount) {
       });
 
     // Redirect to paymentStatus.html on successful transaction
-    window.location.href = `paymentStatus.html?status=success&address=${userAddress}&amount=${tokenAmount}&hash=${receipt.transactionHash}`;
+    redirectToPaymentStatus(
+      "success",
+      userAddress,
+      tokenAmount,
+      receipt.transactionHash
+    );
   } catch (error) {
     console.error(error);
 
