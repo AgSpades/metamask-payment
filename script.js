@@ -295,6 +295,17 @@ async function connectWallet() {
   }
 }
 
+async function redirectToPaymentStatus(status, address, amount, hash) {
+  // Store the transaction details in sessionStorage
+  sessionStorage.setItem("transactionStatus", status);
+  sessionStorage.setItem("userAddress", address);
+  sessionStorage.setItem("amountSent", amount);
+  sessionStorage.setItem("transactionHash", hash);
+
+  // Redirect to the payment status page
+  window.location.href = "paymentStatus.html";
+}
+
 async function buyTokens() {
   const paymentMethod = document.getElementById("paymentMethod").value;
   const tokenAmount = document.getElementById("tokenAmount").value;
