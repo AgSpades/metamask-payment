@@ -315,12 +315,34 @@ async function buyTokens() {
     return;
   }
 
-  if (paymentMethod === "bnb") {
-    await sendBNB(tokenAmount);
-  } else if (paymentMethod === "usdt") {
-    await sendUSDT(tokenAmount);
-  } else {
-    alert("Please select a valid payment method!");
+  try {
+    if (paymentMethod === "bnb") {
+      const receipt = await sendBNB(tokenAmount);
+      redirectToPaymentStatus(
+        "success",
+        userAddress,
+        tokenAmount,
+        receipt.transactionHash
+      );
+    } else if (paymentMethod === "usdt") {
+      const receipt = await sendUSDT(tokenAmount);
+      redirectToPaymentStatus(
+        "success",
+        userAddress,
+        tokenAmount,
+        receipt.transactionHash
+      );
+    } else {
+      throw new Error("Please select a valid payment method!");
+    }
+  } catch (error) {
+    redirectToPaymentStatus(
+      "failed",
+      userAddress,
+      tokenAmount,
+      "",
+      error.message
+    );
   }
 }
 
@@ -341,19 +363,10 @@ async function sendBNB(tokenAmount) {
       gasPrice: gasPrice,
       gas: estimatedGas,
     });
-
-    // Redirect to paymentStatus.html on successful transaction
-    redirectToPaymentStatus(
-      "success",
-      userAddress,
-      tokenAmount,
-      receipt.transactionHash
-    );
+    return receipt;
   } catch (error) {
     console.error(error);
-
-    // Redirect to paymentStatus.html on failed transaction
-    window.location.href = `paymentStatus.html?status=failure&address=${userAddress}&amount=${tokenAmount}`;
+    throw new Error("Insufficient Balance! Failed to purchase using BNB.");
   }
 }
 
@@ -374,16 +387,9 @@ async function sendUSDT(tokenAmount) {
       });
 
     // Redirect to paymentStatus.html on successful transaction
-    redirectToPaymentStatus(
-      "success",
-      userAddress,
-      tokenAmount,
-      receipt.transactionHash
-    );
+    return receipt;
   } catch (error) {
     console.error(error);
-
-    // Redirect to paymentStatus.html on failed transaction
-    window.location.href = `paymentStatus.html?status=failure&address=${userAddress}&amount=${tokenAmount}`;
+    throw new Error("Insufficient Balance! Failed to purchase using USDT.");
   }
 }

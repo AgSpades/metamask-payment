@@ -16,6 +16,7 @@
         <p id="walletAddress"></p>
         <p id="amountSent"></p>
         <p id="transactionHash"></p>
+        <p id="errorMessage" class="text-danger"></p>
       </div>
     </div>
 
@@ -25,6 +26,7 @@
       const address = sessionStorage.getItem("userAddress");
       const amount = sessionStorage.getItem("amountSent");
       const hash = sessionStorage.getItem("transactionHash");
+      const errorMessage = sessionStorage.getItem("errorMessage");
 
       // Update the UI based on the transaction status
       document.getElementById("statusMessage").innerText =
@@ -39,9 +41,12 @@
       document.getElementById(
         "amountSent"
       ).innerText = `Amount Sent: ${amount}`;
-      document.getElementById(
-        "transactionHash"
-      ).innerText = `Transaction Hash: ${hash}`;
+      document.getElementById("transactionHash").innerText =
+        status === "success" ? `Transaction Hash: ${hash}` : "";
+
+      if (status === "failed") {
+        document.getElementById("errorMessage").innerText = errorMessage;
+      }
 
       // Clear the session storage after displaying the information
       sessionStorage.clear();
