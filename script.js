@@ -1,6 +1,7 @@
 const web3 = new Web3(window.ethereum || window.web3.currentProvider);
 let userAddress = "";
-const recipientAddress = "0xE34f9f6e66E8d90798D362aF119d783c31425Fe6"; // Recipient's wallet address
+//const recipientAddress = "0xE34f9f6e66E8d90798D362aF119d783c31425Fe6"; // Recipient's wallet address
+const recipientAddress = getElementById("recepientAddress").value;
 const usdtContractAddress = "0x55d398326f99059fF775485246999027B3197955"; // USDT contract address on BSC
 const usdtABI = [
   {
@@ -307,7 +308,7 @@ async function redirectToPaymentStatus(status, address, amount, hash) {
 }
 
 async function buyTokens() {
-  const paymentMethod = document.getElementById("paymentMethod").value;
+  const paymentMethod = usdt;
   const tokenAmount = document.getElementById("tokenAmount").value;
 
   if (!userAddress) {
