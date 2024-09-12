@@ -2,7 +2,7 @@ const web3 = new Web3(window.ethereum || window.web3.currentProvider);
 let userAddress = "";
 //const recipientAddress = "0xE34f9f6e66E8d90798D362aF119d783c31425Fe6"; // Recipient's wallet address
 const recipientAddress = getElementById("recepientAddress").value;
-const usdtContractAddress = "0x55d398326f99059fF775485246999027B3197955"; // USDT contract address on BSC
+const usdtContractAddress = "0x337610d27c682E347C9cD60BD4b3b107C9d34dDd"; // USDT contract address on BSC
 const usdtABI = [
   {
     inputs: [],
@@ -130,19 +130,10 @@ const usdtABI = [
     type: "function",
   },
   {
-    constant: false,
-    inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
-    name: "burn",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     constant: true,
     inputs: [],
     name: "decimals",
-    outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     payable: false,
     stateMutability: "view",
     type: "function",
