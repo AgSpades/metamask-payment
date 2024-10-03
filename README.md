@@ -1,6 +1,6 @@
 # Metamask BEP20 Payment Web App
 
-This web app allows users to make payments using **USDT BEP20 tokens** on the **BSC Testnet** via MetaMask. It's designed for demonstration purposes and includes the ability to store and display payment status.
+This web app allows users to make payments using **USDT BEP20 tokens** on the **BSC Testnet** via MetaMask. It's designed for demonstration purposes and includes the ability to store and display payment status for a single session.
 
 ## Features
 
@@ -22,6 +22,7 @@ To try out this app, you'll need:
    0x337610d27c682E347C9cD60BD4b3b107C9d34dDd
    ```
    to interact with USDT BEP20 tokens for this demo.
+4. **tBNB** on the **BSC Testnet** for paying the gas fees.
 
 ### Installation
 
@@ -40,12 +41,12 @@ To try out this app, you'll need:
 
 ## Usage
 
-1. **Connect MetaMask**: Once the page loads, click on the Connect Wallet button.
+1. **Connect MetaMask**: Once the page loads, click the **Connect Wallet** button. This will prompt MetaMask to open, where you'll be asked to grant permission to connect your wallet to the website.
 
 2. **Make a Payment**:
 
    - Enter the desired amount of USDT to send.
-   - Enter the recepient's public address and click the "Pay" button.
+   - Enter the recepient's public address and click the "Send USDT" button.
      ![Payment Interface](./screenshots/payment_interface.png)
 
 3. **View Payment Status**:
